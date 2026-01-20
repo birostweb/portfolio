@@ -1,0 +1,8 @@
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Permettre l'accès aux fichiers CSS, JS, images
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.(css|js|jpg|jpeg|png|gif|svg|webp|ico)$ - [L]
+
+# Autres règles de réécriture si nécessaire

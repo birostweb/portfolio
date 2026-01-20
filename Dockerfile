@@ -41,16 +41,17 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts
 # Copie du code source
 COPY src/ ./
 
-# Copie du CSS compilé
+# Copie du CSS compilé DANS LE BON RÉPERTOIRE
 COPY --from=builder /app/src/output.css ./output.css
 
-# Configuration Apache pour pointer vers /var/www/html
+# Configuration Apache SIMPLIFIÉE
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html|g' /etc/apache2/sites-available/000-default.conf && \
-    echo '<Directory /var/www/html>' >> /etc/apache2/sites-available/000-default.conf && \
-    echo '    Options Indexes FollowSymLinks' >> /etc/apache2/sites-available/000-default.conf && \
-    echo '    AllowOverride All' >> /etc/apache2/sites-available/000-default.conf && \
-    echo '    Require all granted' >> /etc/apache2/sites-available/000-default.conf && \
-    echo '</Directory>' >> /etc/apache2/sites-available/000-default.conf
+    sed -i '/<\/VirtualHost>/i \
+    <Directory /var/www/html>\n\
+        Options Indexes FollowSymLinks\n\
+        AllowOverride All\n\
+        Require all granted\n\
+    </Directory>' /etc/apache2/sites-available/000-default.conf
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/html \
