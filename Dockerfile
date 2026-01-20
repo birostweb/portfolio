@@ -25,6 +25,11 @@ RUN ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./src/output.css
 # On part d'une image officielle PHP 8.2 avec le serveur web Apache.
 FROM php:8.2-apache
 
+# Supprimer le message d'avertissement "Could not reliably determine the server's fully qualified domain name"
+# en configurant un ServerName par défaut pour Apache.
+COPY apache-servername.conf /etc/apache2/conf-available/servername.conf
+RUN a2enconf servername
+
 # On installe les extensions PHP nécessaires (zip est requis par Composer)
 RUN apt-get update && apt-get install -y \
         libzip-dev \
@@ -52,3 +57,11 @@ RUN chown -R www-data:www-data /var/www/html
 
 # Le port 80 est déjà exposé par l'image de base, mais on peut le clarifier
 EXPOSE 80
+
+# On copie et on configure notre script d'entrée qui va gérer le port dynamique
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+# La commande par défaut à exécuter via notre entrypoint
+CMD ["apache2-foreground"]
