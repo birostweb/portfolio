@@ -46,7 +46,7 @@ function clean_input($data) {
 }
 
 // Récupération des données du formulaire
-$name = clean_input($_POST["name"] ?? '');
+$lastname = clean_input($_POST["lastname"] ?? '');
 $firstname = clean_input($_POST["firstname"] ?? '');
 $email = filter_var(trim($_POST["email"] ?? ''), FILTER_SANITIZE_EMAIL);
 $message = clean_input($_POST["message"] ?? '');
@@ -80,8 +80,8 @@ try {
     $mail->Encoding = 'base64';
     $mail->isHTML(true); // texte HTML pour conserver les accents et sauts de ligne
 
-    $mail->Subject = "Nouveau message de $firstname $name";
-    $mail->Body = nl2br("Nom : $firstname $name\nEmail : $email\nMessage :\n$message");
+    $mail->Subject = "Nouveau message de $firstname $lastname";
+    $mail->Body = nl2br("Nom : $firstname $lastname\nEmail : $email\nMessage :\n$message");
 
     $mail->send();
 
