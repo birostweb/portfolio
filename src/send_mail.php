@@ -3,9 +3,8 @@ session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use Dotenv\Dotenv;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 // Encodage et headers
 mb_internal_encoding("UTF-8");
@@ -14,10 +13,11 @@ header("X-Frame-Options: DENY");
 header("X-Content-Type-Options: nosniff");
 header("Content-Security-Policy: default-src 'self'; script-src 'self'");
 
-// Chargement des variables d'environnement
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // remonte d'un dossier
-$dotenv->load();
-
+// Chargement des variables d'environnement (avec fallback vers .env si fichier existe)
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 
 // Limitation des tentatives
 $maxAttempts = 1;
@@ -66,19 +66,19 @@ if (empty($message) || strlen($message) > 2000) {
 try {
     $mail = new PHPMailer(true);
     $mail->isSMTP();
-    $mail->Host = $_ENV['SMTP_HOST'];
+    $mail->Host = getenv('SMTP_HOST') ?: $_ENV['SMTP_HOST'];
     $mail->SMTPAuth = true;
-    $mail->Username = $_ENV['SMTP_USERNAME'];
-    $mail->Password = $_ENV['SMTP_PASSWORD'];
-    $mail->SMTPSecure = $_ENV['SMTP_SECURE'] === 'TLS' ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port = $_ENV['SMTP_PORT'];
+    $mail->Username = getenv('SMTP_USERNAME') ?: $_ENV['SMTP_USERNAME'];
+    $mail->Password = getenv('SMTP_PASSWORD') ?: $_ENV['SMTP_PASSWORD'];
+    $mail->SMTPSecure = (getenv('SMTP_SECURE') ?: $_ENV['SMTP_SECURE']) === 'TLS' ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = getenv('SMTP_PORT') ?: $_ENV['SMTP_PORT'];
 
-    $mail->setFrom($_ENV['SMTP_USERNAME'], 'Portfolio Contact');
+    $mail->setFrom(getenv('SMTP_USERNAME') ?: $_ENV['SMTP_USERNAME'], 'Portfolio Contact');
     $mail->addAddress('tbirost@gmail.com');
 
     $mail->CharSet = 'UTF-8';
     $mail->Encoding = 'base64';
-    $mail->isHTML(true); // texte HTML pour conserver les accents et sauts de ligne
+    $mail->isHTML(true);
 
     $mail->Subject = "Nouveau message de $firstname $lastname";
     $mail->Body = nl2br("Nom : $firstname $lastname\nEmail : $email\nMessage :\n$message");
