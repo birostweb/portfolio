@@ -15,6 +15,9 @@ RUN ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./src/output.css --min
 # --- Étape 2: Image finale PHP + Apache ---
 FROM php:8.2-apache
 
+# Activation du module rewrite
+RUN a2enmod rewrite
+
 # Configuration du ServerName pour éviter les warnings
 RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
     && a2enconf servername
@@ -40,6 +43,14 @@ COPY src/ ./
 
 # Copie du CSS compilé
 COPY --from=builder /app/src/output.css ./output.css
+
+# Configuration Apache pour pointer vers /var/www/html
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html|g' /etc/apache2/sites-available/000-default.conf && \
+    echo '<Directory /var/www/html>' >> /etc/apache2/sites-available/000-default.conf && \
+    echo '    Options Indexes FollowSymLinks' >> /etc/apache2/sites-available/000-default.conf && \
+    echo '    AllowOverride All' >> /etc/apache2/sites-available/000-default.conf && \
+    echo '    Require all granted' >> /etc/apache2/sites-available/000-default.conf && \
+    echo '</Directory>' >> /etc/apache2/sites-available/000-default.conf
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/html \

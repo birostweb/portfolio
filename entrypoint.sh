@@ -5,8 +5,19 @@ set -e
 LISTEN_PORT=${PORT:-80}
 
 echo "Configuration d'Apache pour écouter sur le port ${LISTEN_PORT}"
+
+# Modification du port dans ports.conf
 sed -i "s/Listen 80/Listen ${LISTEN_PORT}/g" /etc/apache2/ports.conf
-sed -i "s/:80/:${LISTEN_PORT}/g" /etc/apache2/sites-available/*.conf
+
+# Modification du port dans le VirtualHost
+sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${LISTEN_PORT}>/g" /etc/apache2/sites-available/*.conf
+
+# Affichage de debug
+echo "Contenu de /var/www/html :"
+ls -la /var/www/html
+
+echo "Configuration Apache :"
+cat /etc/apache2/sites-available/000-default.conf
 
 # Lancement d'Apache
 exec "$@"
