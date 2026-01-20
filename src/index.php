@@ -4,7 +4,7 @@
     <title>Portfolio</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="/output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="icon" type="image/x-icon" href="img/logo.png"
@@ -554,7 +554,7 @@
 
 
 
-<script src="script.js"></script>
+<script src="/script.js"></script>
 <style>
     /* Petites animations fluides */
     @keyframes slow-float {
