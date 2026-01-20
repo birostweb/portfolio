@@ -7,8 +7,10 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copie et compilation du CSS
-COPY src/input.css ./src/input.css
+# Copie tous les fichiers nécessaires pour le build Tailwind
+COPY src/ ./src/
+COPY tailwind.config.js ./
+# Compilation du CSS
 RUN ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./src/output.css --minify
 
 
