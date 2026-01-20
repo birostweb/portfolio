@@ -382,6 +382,7 @@
                 <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">GitHub Actions</span>
                 <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">Blender</span>
                 <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">Unity</span>
+                <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">Wordpress</span>
             </div>
         </div>
 
@@ -398,12 +399,15 @@
             </div>
         </div>
 
-        <!-- CMS -->
+        <!-- IA -->
         <div class="col-span-1 md:row-start-2 border-2 border-[#E5E2D6] rounded-lg p-4">
-            <h2 class="uppercase font-bold">CMS</h2>
+            <h2 class="uppercase font-bold">IA</h2>
             <hr class="w-1/4 border-2 mt-2">
             <div class="flex flex-wrap gap-3 mt-4">
-                <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">WordPress</span>
+                <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">Claude</span>
+                <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">ChatGPT</span>
+                <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">Gemini</span>
+                <span class="px-3 py-1 rounded-md text-[#231f20] bg-[#E5E2D6] hover:bg-[#d3d0c1] text-sm font-medium">Perplexity</span>
             </div>
         </div>
 
