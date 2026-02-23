@@ -546,7 +546,7 @@
 
     <!-- Bas de page -->
     <div class="mt-10 text-center text-sm text-[#aaa] tracking-wide">
-        &copy; 2025 Théo Birost — Tous droits réservés.
+        &copy; 2026 Théo Birost - Tous droits réservés.
     </div>
 </footer>
 <!-- Décorations fleurs -->
