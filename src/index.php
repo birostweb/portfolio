@@ -549,35 +549,10 @@
         &copy; 2026 Théo Birost - Tous droits réservés.
     </div>
 </footer>
-<!-- Décorations fleurs -->
-<img src="img/flower.svg" alt="" class="absolute opacity-20 w-16 sm:w-24 md:w-32 top-10 left-6 pointer-events-none select-none animate-slow-float">
-<img src="img/flower.svg" alt="" class="absolute opacity-10 w-20 sm:w-28 md:w-36 top-[50%] right-4 pointer-events-none select-none rotate-45 animate-slow-float-reverse">
-<img src="img/flower.svg" alt="" class="absolute opacity-20 w-12 sm:w-20 md:w-28 bottom-10 left-[15%] pointer-events-none select-none animate-slow-float">
-<img src="img/flower.svg" alt="" class="absolute opacity-10 w-16 sm:w-24 md:w-32 bottom-0 right-[20%] pointer-events-none select-none rotate-12 animate-slow-float">
-
 
 
 
 <script src="script.js"></script>
-<style>
-    /* Petites animations fluides */
-    @keyframes slow-float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(5deg); }
-    }
 
-    @keyframes slow-float-reverse {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(10px) rotate(-5deg); }
-    }
-
-    .animate-slow-float {
-        animation: slow-float 8s ease-in-out infinite;
-    }
-
-    .animate-slow-float-reverse {
-        animation: slow-float-reverse 10s ease-in-out infinite;
-    }
-</style>
 </body>
 </html>
