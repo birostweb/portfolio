@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Théo Birost — Développeur web full-stack · Portfolio</title>
+<title>Portfolio · Théo Birost </title>
 <meta name="description" content="Portfolio de Théo Birost, développeur web full-stack à Troyes (BUT MMI). Projets réels en Vue, JavaScript, PHP et WordPress — du design au déploiement. Disponible en CDI et freelance.">
 <meta property="og:title" content="Théo Birost — Développeur web full-stack">
 <meta property="og:description" content="Portfolio — projets web réels, du design au déploiement. Disponible CDI & freelance.">
 <meta property="og:type" content="website">
+<link rel="icon" href="img/TB.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
