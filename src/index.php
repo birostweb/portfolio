@@ -12,200 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/*
-  VARIABLES CSS (Custom Properties)
-  C'est ici que sont définies toutes les couleurs, polices et dimensions
-  utilisées dans le site. Changer une valeur ici la changera partout.
-*/
-:root{
-  --paper:#E5E2D6; --surface:#FBFAF6; --ink:#231F20; --accent:#F0451E; --accent-d:#CE3711;
-  --gray:#6E6A5F; --line:#CFCABC; --line-2:#E9E5DB;
-  --d-bg:#231F20; --d-text:#F0EDE4; --d-dim:#AEA99C; --d-line:#3A3532;
-  --fd:'IBM Plex Sans Condensed',system-ui,sans-serif; --fb:'IBM Plex Sans',system-ui,sans-serif; --fm:'IBM Plex Mono',ui-monospace,monospace;
-  --max:1160px; --r:10px;
-}
-/*
-  STYLES DE BASE
-  Réinitialisation et styles généraux pour le body, les liens, etc.
-*/
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-::selection{background:var(--accent);color:#fff}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-/*
-  CLASSES UTILITAIRES
-  Petites classes réutilisables pour les mises en page et éléments communs.
-*/
-.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
-.section{padding:clamp(64px,9vw,120px) 0}
-.section--dark{background:var(--d-bg);color:var(--d-text)}
-.eyebrow{font-family:var(--fm);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:11px}
-.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent)}
-.h2{font-family:var(--fd);font-weight:700;line-height:1.02;font-size:clamp(30px,4.6vw,50px);letter-spacing:-.01em}
-.lead{font-size:clamp(16.5px,1.7vw,19px);color:var(--gray);max-width:56ch;margin-top:14px}
-.section--dark .lead{color:var(--d-dim)}
-.sec-head{margin-bottom:clamp(34px,5vw,54px)}
-.sec-head .eyebrow{margin-bottom:16px}
-.accent{color:var(--accent)}
-/*
-  BOUTONS
-  Styles pour les différents types de boutons.
-*/
-.btn{font-family:var(--fm);font-weight:500;font-size:13.5px;letter-spacing:.03em;padding:15px 26px;border-radius:var(--r);display:inline-flex;align-items:center;gap:9px;cursor:pointer;border:1.5px solid transparent;transition:.18s ease;white-space:nowrap}
-.btn svg{width:15px;height:15px}
-.btn-accent{background:var(--accent);color:#fff}.btn-accent:hover{background:var(--accent-d)}
-.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}.btn-ghost:hover{background:var(--ink);color:var(--paper)}
-.section--dark .btn-ghost{color:var(--d-text);border-color:var(--d-line)}.section--dark .btn-ghost:hover{background:var(--d-text);color:var(--ink);border-color:var(--d-text)}
-.btn-lg{padding:18px 32px;font-size:14.5px}
-.tlink{font-family:var(--fm);font-size:13px;color:var(--gray);display:inline-flex;align-items:center;gap:7px}
-.tlink:hover{color:var(--accent)}
-.tlink svg{width:14px;height:14px}
-/*
-  NAVIGATION
-  Barre de navigation principale.
-*/
-.nav{position:sticky;top:0;z-index:60;background:rgba(229,226,214,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav__in{display:flex;align-items:center;justify-content:space-between;height:66px}
-.brand{font-family:var(--fd);font-weight:700;font-size:20px;display:flex;align-items:center;gap:9px}
-.brand b{width:9px;height:9px;background:var(--accent);border-radius:50%;display:inline-block}
-.nav__links{display:flex;align-items:center;gap:28px}
-.nav__links a:not(.btn){font-family:var(--fm);font-size:13px;color:var(--gray);transition:.15s}.nav__links a:not(.btn):hover{color:var(--ink)}
-.nav__toggle{display:none;background:none;border:1.5px solid var(--ink);border-radius:8px;width:44px;height:40px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center}
-.nav__toggle span{width:18px;height:1.5px;background:var(--ink)}
-/*
-  SECTION HERO
-  La première section visible de la page avec le titre principal.
-*/
-.hero{padding:clamp(44px,6vw,80px) 0 clamp(56px,7vw,90px)}
-.hero__grid{display:grid;grid-template-columns:1.35fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
-.chip{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:12px;letter-spacing:.04em;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:8px 15px}
-.chip b{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
-.hero h1{font-family:var(--fd);font-weight:700;line-height:.96;font-size:clamp(46px,7vw,86px);letter-spacing:-.02em;margin:22px 0 20px}
-.hero__sub{font-size:clamp(17px,1.9vw,20px);color:var(--gray);max-width:48ch}
-.hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:32px}
-.portrait{position:relative;aspect-ratio:4/5;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.portrait img{width:100%;height:100%;object-fit:cover}
-.portrait__mono{font-family:var(--fd);font-weight:700;font-size:clamp(88px,12vw,140px);color:var(--ink);line-height:1;letter-spacing:-.04em}
-.portrait__badge{position:absolute;left:14px;bottom:14px;right:14px;display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--paper);border-radius:8px;padding:11px 14px;font-family:var(--fm);font-size:11.5px}
-.portrait__badge .dot{color:var(--accent)}
-/*
-  BARRE DE FAITS (Facts Bar)
-  La barre sombre avec les 4 points clés.
-*/
-.facts{background:var(--ink);color:var(--d-text)}
-.facts__grid{display:grid;grid-template-columns:repeat(4,1fr)}
-.fcell{padding:clamp(22px,2.6vw,32px) clamp(18px,2vw,28px);border-left:1px solid var(--d-line)}
-.fcell:first-child{border-left:0;padding-left:0}
-.fcell .n{font-family:var(--fm);font-size:12px;color:var(--accent);letter-spacing:.1em}
-.fcell .t{font-family:var(--fd);font-weight:600;font-size:clamp(16px,1.6vw,19px);line-height:1.2;margin-top:10px}
-/*
-  SECTION PROJETS
-  Mise en page pour la liste des projets.
-*/
-.projects{display:flex;flex-direction:column;gap:clamp(20px,3vw,32px)}
-.project{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,52px);align-items:center}
-.project:nth-child(even) .shot{order:2}
-.shot{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface);box-shadow:0 1px 0 rgba(35,31,32,.04)}
-.shot__bar{display:flex;align-items:center;gap:6px;padding:11px 14px;border-bottom:1px solid var(--line-2);background:#F1EEE7}
-.shot__bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}.shot__bar i:first-child{background:var(--accent)}
-.shot__url{font-family:var(--fm);font-size:11px;color:var(--gray);margin-left:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.shot__img{aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:repeating-linear-gradient(-45deg,#F3F1EA,#F3F1EA 12px,#EFECE3 12px,#EFECE3 24px)}
-.shot__img img{width:100%;height:100%;object-fit:cover;object-position:top}
-.shot__ph{font-family:var(--fd);font-weight:700;font-size:clamp(22px,3vw,30px);color:#C7C1B2}
-.shot__phk{font-family:var(--fm);font-size:11px;letter-spacing:.14em;color:#C7C1B2;text-transform:uppercase}
-.project__k{font-family:var(--fm);font-size:12px;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
-.project h3{font-family:var(--fd);font-weight:700;font-size:clamp(24px,3vw,34px);line-height:1.03;margin:12px 0 6px}
-.project__ctx{font-family:var(--fm);font-size:12.5px;color:var(--gray);text-transform:uppercase;letter-spacing:.02em}
-.project p{margin:16px 0 14px;color:var(--ink);max-width:48ch}
-.project__role{font-size:14.5px;color:var(--gray);margin-bottom:16px}.project__role b{color:var(--ink);font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-right:8px}
-.project .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.tag{font-family:var(--fm);font-size:11.5px;color:var(--gray);border:1px solid var(--line);border-radius:6px;padding:5px 10px;white-space:nowrap}
-.project__links{display:flex;flex-wrap:wrap;gap:12px 22px}
-.plink{font-family:var(--fm);font-size:13px;color:var(--accent);display:inline-flex;align-items:center;gap:8px;font-weight:500}
-.plink svg{width:14px;height:14px;transition:transform .2s}.plink:hover svg{transform:translate(2px,-2px)}
-/*
-  SECTION COMPÉTENCES (Skills)
-  Liste des compétences et mini-projets.
-*/
-.skills{border-top:1px solid var(--line)}
-.skillrow{display:grid;grid-template-columns:190px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
-.skillrow h3{font-family:var(--fd);font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px}
-.skillrow h3::before{content:"";width:11px;height:11px;background:var(--accent);border-radius:3px;flex:none}
-.skilltags{display:flex;flex-wrap:wrap;gap:8px}
-.subhead{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin:clamp(38px,5vw,56px) 0 22px;display:flex;align-items:center;gap:14px}
-.subhead::after{content:"";flex:1;height:1px;background:var(--line)}
-.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.mini{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,2.4vw,28px);display:flex;flex-direction:column;transition:border-color .2s}
-.mini:hover{border-color:var(--ink)}
-.mini__k{font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
-.mini h3{font-family:var(--fd);font-weight:700;font-size:22px;line-height:1.05;margin:9px 0 8px}
-.mini p{font-size:14.5px;color:var(--gray);line-height:1.5;margin-bottom:14px}
-.mini .tags{margin-top:auto;margin-bottom:16px}
-/*
-  SECTION PARCOURS (Timeline)
-  Mise en page de la frise chronologique.
-*/
-.tl{border-left:2px solid var(--line);margin-left:6px;display:flex;flex-direction:column;gap:clamp(28px,4vw,40px);padding-left:30px}
-.tlitem{position:relative}
-.tlitem::before{content:"";position:absolute;left:-37px;top:3px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:3px solid var(--paper)}
-.tldate{font-family:var(--fm);font-size:12px;letter-spacing:.06em;color:var(--accent);text-transform:uppercase}
-.tlitem h3{font-family:var(--fd);font-weight:700;font-size:clamp(21px,2.3vw,26px);margin:8px 0 4px}
-.tlrole{font-family:var(--fm);font-size:12.5px;color:var(--gray);margin-bottom:10px}
-.tlitem p{color:var(--gray);font-size:15.5px;max-width:62ch}
-.about{max-width:64ch;font-size:clamp(16.5px,1.7vw,19px);line-height:1.65;margin-bottom:clamp(38px,5vw,54px)}
-.about b{color:var(--ink);font-weight:600}
-/*
-  SECTION CONTACT & FORMULAIRE
-*/
-.cta__grid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(34px,6vw,72px);align-items:start}
-.cta h2{font-size:clamp(32px,4.6vw,54px);margin-bottom:16px}
-.manifest{margin-top:28px;border-top:1px solid var(--d-line)}
-.mrow{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--d-line);align-items:baseline}
-.mrow .mk{font-family:var(--fm);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.mrow .mv{font-family:var(--fm);font-size:14.5px;color:var(--d-text);word-break:break-word}
-.mrow .mv a:hover{color:var(--accent)}
-.form{display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,.03);border:1px solid var(--d-line);border-radius:var(--r);padding:clamp(22px,3vw,30px)}
-.field label{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--d-dim);display:block;margin-bottom:8px}
-.field input,.field textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--d-line);border-radius:8px;color:var(--d-text);font-family:var(--fb);font-size:16px;padding:12px 14px;transition:.2s}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
-.field textarea{resize:vertical;min-height:110px}
-/*
-  FOOTER (Pied de page)
-*/
-.footer{background:var(--d-bg);color:var(--d-dim);padding:36px 0 30px;border-top:1px solid var(--d-line)}
-.footer__in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
-.footer__b{font-family:var(--fd);font-weight:700;color:var(--d-text);font-size:16px}
-.footer__l{display:flex;gap:20px;flex-wrap:wrap}
-.footer__l a{font-family:var(--fm);font-size:12px;color:var(--d-dim)}.footer__l a:hover{color:var(--accent)}
-.footer__meta{width:100%;margin-top:22px;padding-top:20px;border-top:1px solid var(--d-line);font-family:var(--fm);font-size:11.5px;color:var(--d-dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-/*
-  ANIMATION D'APPARITION
-  Utilisée par le script JS pour faire apparaître les éléments au défilement.
-*/
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}.reveal.in{opacity:1;transform:none}
-/*
-  MEDIA QUERIES (Responsive)
-  Ajustements pour les différentes tailles d'écran.
-*/
-@media (max-width:920px){
-  .hero__grid,.cta__grid{grid-template-columns:1fr;gap:36px}
-  .hero__card{max-width:380px}
-  .project,.project:nth-child(even) .shot{grid-template-columns:1fr;order:0}.project .shot{order:0!important}
-  .facts__grid{grid-template-columns:repeat(2,1fr)}
-  .fcell:nth-child(2n+1){border-left:0;padding-left:0}.fcell:nth-child(n+3){border-top:1px solid var(--d-line)}
-}
-@media (max-width:640px){
-  .nav__links{position:absolute;top:66px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:8px 24px 20px;display:none}
-  .nav__links.open{display:flex}.nav__links a:not(.btn){width:100%;padding:13px 0;border-bottom:1px solid var(--line)}.nav__links .btn{margin-top:14px;width:100%;justify-content:center}
-  .nav__toggle{display:flex}
-  .skillrow{grid-template-columns:1fr;gap:8px}.mini-grid{grid-template-columns:1fr}.mrow{grid-template-columns:84px 1fr;gap:12px}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important}*{transition:none!important}}
-</style>
+<link rel="stylesheet" href="output.css">
 </head>
 <body>
 
@@ -426,10 +233,10 @@ img{max-width:100%;display:block}
           <div class="mrow"><span class="mk">Lieu</span><span class="mv">Troyes (10) · France · Remote</span></div>
         </div>
       </div>
-      <form class="form" id="cform">
-        <div class="field"><label for="cn">Nom</label><input id="cn" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="ce">Email</label><input id="ce" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="cm">Votre message</label><textarea id="cm" required></textarea></div>
+      <form class="form" id="cform" method="post" action="send_mail.php">
+        <div class="field"><label for="name">Nom</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="message">Votre message</label><textarea id="message" name="message" required></textarea></div>
         <button type="submit" class="btn btn-accent btn-lg" style="justify-content:center">Envoyer
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </form>
@@ -473,30 +280,24 @@ img{max-width:100%;display:block}
 
 // --- Script pour le formulaire de contact ---
 (function() {
-  var form = document.getElementById('cform'); // Le formulaire
-
+  var form = document.getElementById('cform');
   form.addEventListener('submit', function(event) {
-    // On empêche l'envoi classique du formulaire
     event.preventDefault();
+    var formData = new FormData(form);
 
-    // On récupère les valeurs des champs
-    var name = document.getElementById('cn').value.trim();
-    var email = document.getElementById('ce').value.trim();
-    var message = document.getElementById('cm').value.trim();
-
-    // On construit le corps de l'email
-    var body = 'Nom : ' + name + '\n' +
-               'Email : ' + email + '\n\n' +
-               message;
-
-    // On crée un lien 'mailto:' qui ouvrira le client email par défaut de l'utilisateur
-    // C'est une solution simple qui ne nécessite pas de back-end.
-    var mailtoLink = 'mailto:tbirost@gmail.com' +
-                     '?subject=' + encodeURIComponent('Contact portfolio — ' + (name || '')) +
-                     '&body=' + encodeURIComponent(body);
-
-    // On redirige l'utilisateur vers ce lien
-    window.location.href = mailtoLink;
+    fetch('send_mail.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(text => {
+      alert(text);
+      form.reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    });
   });
 })();
 
