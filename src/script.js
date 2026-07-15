@@ -1,26 +1,60 @@
-setTimeout(() => {
-    const messageBox = document.querySelector(".message");
-    if (messageBox) {
-        messageBox.style.opacity = "0";
-        setTimeout(() => messageBox.style.display = "none", 500);
-    }
-}, 5000);
+// --- Script pour le menu de navigation mobile (burger menu) ---
+(function() {
+  const toggleBtn = document.getElementById('toggle');
+  const menu = document.getElementById('menu');
 
-// Scroll fluide
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
-        }
+  if (toggleBtn && menu) {
+    toggleBtn.addEventListener('click', function() {
+      const isOpen = menu.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', isOpen);
     });
-});
 
-// Mobile menu toggle
-const menuBtn = document.getElementById("menu-btn");
-const mobileMenu = document.getElementById("mobile-menu");
+    menu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menu.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded', false);
+      });
+    });
+  }
+})();
 
-menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-});
+// --- Script pour le formulaire de contact ---
+(function() {
+  const form = document.getElementById('cform');
+
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('cn').value.trim();
+      const email = document.getElementById('ce').value.trim();
+      const message = document.getElementById('cm').value.trim();
+
+      const body = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
+
+      const mailtoLink = `mailto:tbirost@gmail.com?subject=${encodeURIComponent(`Contact portfolio — ${name || ''}`)}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailtoLink;
+    });
+  }
+})();
+
+// --- Script pour l'animation d'apparition au défilement ---
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(function(element) {
+    observer.observe(element);
+  });
+})();

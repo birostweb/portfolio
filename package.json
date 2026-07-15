@@ -1,15 +1,10 @@
 {
   "scripts": {
-    "dev": "npx tailwindcss -i ./src/input.css -o ./src/build.css --watch",
-    "build": "npx tailwindcss -i ./src/input.css -o ./dist/build.css --minify"
-  },
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.13"
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
+    "@tailwindcss/cli": "^4.1.13",
     "tailwindcss": "^4.1.13"
   }
 }
-
