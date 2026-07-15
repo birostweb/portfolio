@@ -34,6 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = new PHPMailer(true);
 
     try {
+        // Set character set to UTF-8
+        $mail->CharSet = 'UTF-8';
+
         // Server settings
         $mail->isSMTP();
         $mail->Host       = $_ENV['SMTP_HOST'];
