@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($name) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Set a 400 (bad request) response code and exit.
         http_response_code(400);
-        echo "Please complete the form and try again.";
+        echo "Veuillez remplir tous les champs et réessayer.";
         exit;
     }
 
@@ -52,19 +52,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Content
         $mail->isHTML(false);
-        $mail->Subject = "New contact from $name";
-        $mail->Body    = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email\n\nMessage:\n$message";
+        $mail->Subject = "Nouveau message de $name";
+        $mail->Body    = "Vous avez reçu un nouveau message depuis votre formulaire de contact.\n\n"."Voici les détails :\n\nNom : $name\n\nEmail : $email\n\nMessage :\n$message";
 
         $mail->send();
         http_response_code(200);
-        echo "Thank You! Your message has been sent.";
+        echo "Merci ! Votre message a bien été envoyé.";
     } catch (Exception $e) {
         http_response_code(500);
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo "Le message n'a pas pu être envoyé. Erreur : {$mail->ErrorInfo}";
     }
 } else {
     // Not a POST request, set a 403 (forbidden) response code.
     http_response_code(403);
-    echo "There was a problem with your submission, please try again.";
+    echo "Un problème est survenu lors de l'envoi, veuillez réessayer.";
 }
 ?>
