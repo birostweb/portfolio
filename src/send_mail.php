@@ -1,95 +1,60 @@
 <?php
-session_start();
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/vendor/autoload.php';
+require '../vendor/autoload.php';
 
-// Encodage et headers
-mb_internal_encoding("UTF-8");
-header('Content-Type: text/html; charset=UTF-8');
-header("X-Frame-Options: DENY");
-header("X-Content-Type-Options: nosniff");
-header("Content-Security-Policy: default-src 'self'; script-src 'self'");
+// Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
-// Chargement des variables d'environnement (avec fallback vers .env si fichier existe)
-if (file_exists(__DIR__ . '/.env')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-}
+// Check if the request is a POST request
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the form fields and remove whitespace.
+    $name = strip_tags(trim($_POST["name"]));
+    $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+    $message = trim($_POST["message"]);
 
-// Limitation des tentatives
-$maxAttempts = 1;
-$timeFrame = 240; // secondes
+    // Check that data was sent.
+    if (empty($name) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Set a 400 (bad request) response code and exit.
+        http_response_code(400);
+        echo "Please complete the form and try again.";
+        exit;
+    }
 
-if (!isset($_SESSION['attempts'])) {
-    $_SESSION['attempts'] = [];
-}
-
-// Nettoyage des anciennes tentatives
-$_SESSION['attempts'] = array_filter($_SESSION['attempts'], function ($timestamp) use ($timeFrame) {
-    return $timestamp > time() - $timeFrame;
-});
-
-if (count($_SESSION['attempts']) >= $maxAttempts) {
-    header("Location: index.php?status=error&message=" . urlencode("Trop de tentatives. Réessayez plus tard.") . "#contact");
-    exit;
-}
-
-$_SESSION['attempts'][] = time();
-
-// Fonction de nettoyage des champs (préserve les accents)
-function clean_input($data) {
-    $data = trim($data);
-    return htmlspecialchars($data, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
-
-// Récupération des données du formulaire
-$lastname = clean_input($_POST["lastname"] ?? '');
-$firstname = clean_input($_POST["firstname"] ?? '');
-$email = filter_var(trim($_POST["email"] ?? ''), FILTER_SANITIZE_EMAIL);
-$message = clean_input($_POST["message"] ?? '');
-
-// Validation
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: index.php?status=error&message=" . urlencode("L'email fourni n'est pas valide.") . "#contact");
-    exit;
-}
-
-if (empty($message) || strlen($message) > 2000) {
-    header("Location: index.php?status=error&message=" . urlencode("Le message est vide ou trop long.") . "#contact");
-    exit;
-}
-
-// Envoi avec PHPMailer
-try {
+    // Create a new PHPMailer instance
     $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host = getenv('SMTP_HOST') ?: $_ENV['SMTP_HOST'];
-    $mail->SMTPAuth = true;
-    $mail->Username = getenv('SMTP_USERNAME') ?: $_ENV['SMTP_USERNAME'];
-    $mail->Password = getenv('SMTP_PASSWORD') ?: $_ENV['SMTP_PASSWORD'];
-    $mail->SMTPSecure = (getenv('SMTP_SECURE') ?: $_ENV['SMTP_SECURE']) === 'TLS' ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port = getenv('SMTP_PORT') ?: $_ENV['SMTP_PORT'];
 
-    $mail->setFrom(getenv('SMTP_USERNAME') ?: $_ENV['SMTP_USERNAME'], 'Portfolio Contact');
-    $mail->addAddress('tbirost@gmail.com');
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host       = $_ENV['SMTP_HOST'];
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $_ENV['SMTP_USERNAME'];
+        $mail->Password   = $_ENV['SMTP_PASSWORD'];
+        $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
+        $mail->Port       = $_ENV['SMTP_PORT'];
 
-    $mail->CharSet = 'UTF-8';
-    $mail->Encoding = 'base64';
-    $mail->isHTML(true);
+        // Recipients
+        $mail->setFrom($email, $name);
+        $mail->addAddress('tbirost@gmail.com', 'Théo Birost'); // Set your receiving email address
 
-    $mail->Subject = "Nouveau message de $firstname $lastname";
-    $mail->Body = nl2br("Nom : $firstname $lastname\nEmail : $email\nMessage :\n$message");
+        // Content
+        $mail->isHTML(false);
+        $mail->Subject = "New contact from $name";
+        $mail->Body    = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email\n\nMessage:\n$message";
 
-    $mail->send();
-
-    header("Location: index.php?status=success#contact");
-    exit;
-
-} catch (Exception $e) {
-    $errorMessage = urlencode("Erreur lors de l'envoi : " . $mail->ErrorInfo);
-    header("Location: index.php?status=error&message=$errorMessage#contact");
-    exit;
+        $mail->send();
+        http_response_code(200);
+        echo "Thank You! Your message has been sent.";
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+} else {
+    // Not a POST request, set a 403 (forbidden) response code.
+    http_response_code(403);
+    echo "There was a problem with your submission, please try again.";
 }
+?>
