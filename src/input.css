@@ -156,7 +156,7 @@
     .field label { @apply font-fm text-[11px] tracking-[.1em] uppercase text-d-dim block mb-2; }
     .field input, .field textarea { @apply w-full bg-white/[.04] border border-d-line rounded-lg text-d-text font-fb text-base py-3 px-3.5 transition-colors duration-200; }
     .field input:focus, .field textarea:focus { @apply outline-none border-accent; }
-    .field textarea { @apply resize-vertical min-h-[110px]; }
+    .field textarea { @apply resize-y min-h-[110px]; }
 
     .footer { @apply bg-d-bg text-d-dim pt-9 pb-[30px] border-t border-d-line; }
     .footer__in { @apply flex flex-wrap gap-[18px] justify-between items-center; }
