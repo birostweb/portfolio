@@ -172,7 +172,8 @@
     @media (max-width:920px){
       .hero__grid, .cta__grid { @apply grid-cols-1 gap-9; }
       .hero__card { @apply max-w-[380px]; }
-      .project, .project:nth-child(even) .shot { @apply grid-cols-1; order: initial !important; }
+      .project { @apply grid-cols-1; }
+      .project .shot { @apply !order-none; }
       .facts__grid { @apply grid-cols-2; }
       .fcell:nth-child(2n+1) { @apply border-l-0 pl-0; }
       .fcell:nth-child(n+3) { @apply border-t border-d-line; }
@@ -189,7 +190,7 @@
     }
     @media (prefers-reduced-motion:reduce){
         html { @apply scroll-auto; }
-        .reveal { @apply opacity-100 !important; transform: none !important; }
-        * { @apply transition-none !important; }
+        .reveal { @apply !opacity-100 !transform-none; }
+        * { @apply !transition-none; }
     }
 }
