@@ -2,12 +2,18 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Correct the path to autoload.php
 require 'vendor/autoload.php';
 
-// Load environment variables
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+// In production (like Dokploy), variables are injected directly into the environment.
+// For local development, we load them from a .env file if it exists.
+try {
+    // The path is now __DIR__, which is /var/www/html in the container.
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+} catch (Dotenv\Exception\InvalidPathException $e) {
+    // .env file not found, which is expected in production.
+    // We assume the environment variables are set by the server.
+}
 
 // Check if the request is a POST request
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
