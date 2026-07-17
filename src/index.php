@@ -227,8 +227,8 @@
         <h2 class="h2">Travaillons ensemble.</h2>
         <p class="lead">Une offre en CDI, une mission freelance, ou juste envie de discuter ? Je réponds vite.</p>
         <div class="manifest">
-          <div class="mrow"><span class="mk">Mail</span><span class="mv"><a href="mailto:tbirost@gmail.com">tbirost@gmail.com</a></span></div>
-          <div class="mrow"><span class="mk">GitHub</span><span class="mv"><a href="https://github.com/theobirost" target="_blank" rel="noopener">github.com/theobirost</a></span></div>
+          <div class="mrow"><span class="mk">Mail</span><span class="mv"><a href="mailto:contact@theo-birost.fr">contact@theo-birost.fr</a></span></div>
+          <div class="mrow"><span class="mk">GitHub</span><span class="mv"><a href="https://github.com/birostweb" target="_blank" rel="noopener">github.com/birostweb</a></span></div>
           <div class="mrow"><span class="mk">LinkedIn</span><span class="mv"><a href="https://www.linkedin.com/in/theobirost" target="_blank" rel="noopener">linkedin.com/in/theobirost</a></span></div>
           <div class="mrow"><span class="mk">Lieu</span><span class="mv">Troyes (10) · France · Remote</span></div>
         </div>
