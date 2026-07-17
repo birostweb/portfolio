@@ -1,3 +1,16 @@
+<?php
+// Jeton anti-spam du formulaire de contact : un HMAC signé sur l'horodatage
+// du rendu de la page. send_mail.php vérifie la signature et le délai
+// minimum écoulé avant d'accepter le message (voir plus bas dans ce fichier).
+require __DIR__ . '/vendor/autoload.php';
+try {
+    Dotenv\Dotenv::createImmutable(__DIR__)->load();
+} catch (Dotenv\Exception\InvalidPathException $e) {
+    // Pas de .env : normal en prod, les variables viennent de l'environnement.
+}
+$contactFormTs    = time();
+$contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_FORM_SECRET'] ?? '');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -234,9 +247,15 @@
         </div>
       </div>
       <form class="form" id="cform" method="post" action="send_mail.php">
-        <div class="field"><label for="name">Nom</label><input id="name" name="name" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="message">Votre message</label><textarea id="message" name="message" required></textarea></div>
+        <div class="field"><label for="name">Nom</label><input id="name" name="name" type="text" autocomplete="name" required maxlength="100"></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254"></div>
+        <div class="field"><label for="message">Votre message</label><textarea id="message" name="message" required maxlength="5000"></textarea></div>
+        <input type="hidden" name="ts" value="<?= htmlspecialchars((string) $contactFormTs, ENT_QUOTES) ?>">
+        <input type="hidden" name="token" value="<?= htmlspecialchars($contactFormToken, ENT_QUOTES) ?>">
+        <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+          <label for="website">Laisser ce champ vide</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit" class="btn btn-accent btn-lg" style="justify-content:center">Envoyer
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </form>

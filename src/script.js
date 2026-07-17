@@ -18,27 +18,6 @@
   }
 })();
 
-// --- Script pour le formulaire de contact ---
-(function() {
-  const form = document.getElementById('cform');
-
-  if (form) {
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const name = document.getElementById('cn').value.trim();
-      const email = document.getElementById('ce').value.trim();
-      const message = document.getElementById('cm').value.trim();
-
-      const body = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
-
-      const mailtoLink = `mailto:tbirost@gmail.com?subject=${encodeURIComponent(`Contact portfolio — ${name || ''}`)}&body=${encodeURIComponent(body)}`;
-
-      window.location.href = mailtoLink;
-    });
-  }
-})();
-
 // --- Script pour l'animation d'apparition au défilement ---
 (function() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
