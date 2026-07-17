@@ -42,7 +42,7 @@
         <a href="#projets" class="btn btn-accent btn-lg">Voir mes projets
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="#contact" class="btn btn-ghost btn-lg">Me contacter</a>
-        <a href="cv-theo-birost.pdf" class="tlink" download>
+        <a href="pdf/CV.pdf" class="tlink" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
           Mon CV (PDF)</a>
       </div>
@@ -153,7 +153,7 @@
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
         <h3>Lanceur de dés</h3>
-        <p>Un simulateur de lancer de dés animé, histoire de m'entraîner sur la génération aléatoire, la manipulation du DOM et les animations CSS.</p>
+        <p>Un simulateur de lancer de dés animé, pour pouvoir m'entraîner sur la génération aléatoire, la manipulation du DOM et les animations CSS.</p>
         <div class="tags"><span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
         <a class="plink" href="http://mmi23f02.mmi-troyes.fr/dice/" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
@@ -265,11 +265,11 @@
   toggleBtn.addEventListener('click', function() {
     // On ajoute/supprime la classe 'open' sur le menu pour l'afficher/cacher
     var isOpen = menu.classList.toggle('open');
-    // On met à jour l'attribut 'aria-expanded' pour l'accessibilité
+    // On met à jour l'attribut 'aria expanded' pour l'accessibilité
     toggleBtn.setAttribute('aria-expanded', isOpen);
   });
 
-  // Pour fermer le menu quand on clique sur un lien (sur mobile)
+  // Pour fermer le menu quand on clique sur un lien (sur mobile).
   menu.querySelectorAll('a').forEach(function(link) {
     link.addEventListener('click', function() {
       menu.classList.remove('open');
@@ -313,7 +313,7 @@
     entries.forEach(function(entry) {
       // Si l'élément est visible...
       if (entry.isIntersecting) {
-        // ...on lui ajoute la classe 'in' pour déclencher l'animation CSS
+        // ... on lui ajoute la classe 'in' pour déclencher l'animation CSS
         entry.target.classList.add('in');
         // Et on arrête de l'observer pour ne pas répéter l'animation
         observer.unobserve(entry.target);
