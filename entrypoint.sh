@@ -12,12 +12,5 @@ sed -i "s/Listen 80/Listen ${LISTEN_PORT}/g" /etc/apache2/ports.conf
 # Modification du port dans le VirtualHost
 sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${LISTEN_PORT}>/g" /etc/apache2/sites-available/*.conf
 
-# Affichage de debug
-echo "Contenu de /var/www/html :"
-ls -la /var/www/html
-
-echo "Configuration Apache :"
-cat /etc/apache2/sites-available/000-default.conf
-
 # Lancement d'Apache
 exec "$@"

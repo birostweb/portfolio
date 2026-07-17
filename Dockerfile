@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copie des fichiers de manifeste
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci --no-audit --no-fund --silent
 
 # Copie tous les fichiers nécessaires pour le build Tailwind
 COPY src/ ./src/
@@ -24,12 +24,9 @@ RUN a2enmod rewrite
 RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
     && a2enconf servername
 
-# Installation des extensions PHP nécessaires
-RUN apt-get update && apt-get install -y \
-        libzip-dev \
-        unzip \
-    && docker-php-ext-install zip \
-    && rm -rf /var/lib/apt/lists/*
+# Installation des extensions PHP nécessaires (installeur précompilé : plus rapide, moins de logs)
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions zip
 
 # Installation de Composer
 COPY --from=composer:lts /usr/bin/composer /usr/bin/composer
