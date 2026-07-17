@@ -75,6 +75,76 @@ function contact_rate_limited(string $ip, int $maxRequests = 5, int $windowSecon
     return $limited;
 }
 
+/**
+ * Construit le corps HTML de l'email de notification reçu par le propriétaire
+ * du site. $name/$email/$message doivent déjà être validés mais pas encore
+ * échappés : l'échappement HTML est fait ici, au seul endroit où ça compte.
+ */
+function contact_render_email_html(string $name, string $email, string $message): string
+{
+    $safeName    = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+    $safeEmail   = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+    $safeMessage = nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8'));
+    $date        = date('d/m/Y à H:i');
+
+    return <<<HTML
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouveau message</title>
+</head>
+<body style="margin:0;padding:0;background-color:#E5E2D6;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#E5E2D6;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:#FBFAF6;border-radius:12px;overflow:hidden;border:1px solid #CFCABC;">
+          <tr>
+            <td style="background-color:#231F20;padding:28px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="width:9px;height:9px;background-color:#F0451E;border-radius:50%;"></td>
+                  <td style="padding-left:10px;color:#F0EDE4;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Formulaire de contact</td>
+                </tr>
+              </table>
+              <div style="color:#F0EDE4;font-size:22px;font-weight:700;margin-top:14px;">Nouveau message reçu</div>
+              <div style="color:#AEA99C;font-size:13px;margin-top:6px;">{$date}</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+                <tr>
+                  <td style="padding:10px 0;border-bottom:1px solid #E9E5DB;width:90px;color:#F0451E;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;vertical-align:top;">Nom</td>
+                  <td style="padding:10px 0;border-bottom:1px solid #E9E5DB;color:#231F20;font-size:15px;">{$safeName}</td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 0;border-bottom:1px solid #E9E5DB;color:#F0451E;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;vertical-align:top;">Email</td>
+                  <td style="padding:10px 0;border-bottom:1px solid #E9E5DB;color:#231F20;font-size:15px;"><a href="mailto:{$safeEmail}" style="color:#231F20;text-decoration:underline;">{$safeEmail}</a></td>
+                </tr>
+              </table>
+              <div style="color:#F0451E;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin-bottom:10px;">Message</div>
+              <div style="color:#231F20;font-size:15px;line-height:1.6;background-color:#E9E5DB;border-radius:8px;padding:16px 18px;">{$safeMessage}</div>
+              <div style="margin-top:28px;text-align:center;">
+                <a href="mailto:{$safeEmail}" style="display:inline-block;background-color:#F0451E;color:#FFFFFF;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.03em;padding:12px 26px;border-radius:6px;">Répondre à {$safeName}</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 32px;background-color:#E9E5DB;color:#6E6A5F;font-size:12px;text-align:center;">
+              Envoyé automatiquement depuis le formulaire de contact de theo-birost.fr
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+HTML;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // --- Rate limit par IP : coupe le spam en rafale avant tout autre traitement ---
@@ -161,11 +231,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->addReplyTo($email, $name);
 
         // --- Contenu ---
-        $mail->isHTML(false);
+        $mail->isHTML(true);
         $mail->Subject = "Nouveau message de $name";
-        $mail->Body    = "Vous avez reçu un nouveau message depuis votre formulaire de contact.\n\n"
-            . "Voici les détails :\n\n"
-            . "Nom : $name\n\n"
+        $mail->Body    = contact_render_email_html($name, $email, $message);
+        $mail->AltBody = "Nouveau message depuis le formulaire de contact.\n\n"
+            . "Nom : $name\n"
             . "Email : $email\n\n"
             . "Message :\n$message";
 
