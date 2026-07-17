@@ -85,7 +85,7 @@ function contact_render_email_html(string $name, string $email, string $message)
     $safeName    = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
     $safeEmail   = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
     $safeMessage = nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8'));
-    $date        = date('d/m/Y à H:i');
+    $date        = (new DateTime('now', new DateTimeZone('Europe/Paris')))->format('d/m/Y à H:i');
 
     return <<<HTML
 <!DOCTYPE html>
@@ -104,7 +104,7 @@ function contact_render_email_html(string $name, string $email, string $message)
             <td style="background-color:#231F20;padding:28px 32px;">
               <table role="presentation" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="width:9px;height:9px;background-color:#F0451E;border-radius:50%;"></td>
+                  <td width="9" height="9" style="width:9px;height:9px;line-height:9px;font-size:0;background-color:#F0451E;border-radius:50%;">&nbsp;</td>
                   <td style="padding-left:10px;color:#F0EDE4;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Formulaire de contact</td>
                 </tr>
               </table>
