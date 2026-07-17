@@ -47,8 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port       = $_ENV['SMTP_PORT'];
 
         // Recipients
-        $mail->setFrom($email, $name);
-        $mail->addAddress('tbirost@gmail.com', 'Théo Birost'); // Set your receiving email address
+        $mail->setFrom($_ENV['SMTP_USERNAME'], 'Formulaire theo-birost.fr');
+        $mail->addAddress('contact@theo-birost.fr', 'Théo Birost');
+        $mail->addReplyTo($email, $name);
 
         // Content
         $mail->isHTML(false);
