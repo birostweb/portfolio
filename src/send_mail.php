@@ -104,8 +104,10 @@ function contact_render_email_html(string $name, string $email, string $message)
             <td style="background-color:#231F20;padding:28px 32px;">
               <table role="presentation" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td width="9" height="9" style="width:9px;height:9px;line-height:9px;font-size:0;background-color:#F0451E;border-radius:50%;">&nbsp;</td>
-                  <td style="padding-left:10px;color:#F0EDE4;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Formulaire de contact</td>
+                  <td style="font-size:0;line-height:0;vertical-align:middle;">
+                    <span style="display:inline-block;width:9px;height:9px;background-color:#F0451E;border-radius:50%;"></span>
+                  </td>
+                  <td style="padding-left:10px;color:#F0EDE4;font-size:13px;line-height:1;letter-spacing:.08em;text-transform:uppercase;font-weight:600;vertical-align:middle;">Formulaire de contact</td>
                 </tr>
               </table>
               <div style="color:#F0EDE4;font-size:22px;font-weight:700;margin-top:14px;">Nouveau message reçu</div>
