@@ -36,8 +36,8 @@
   <div class="wrap hero__grid">
     <div>
       <span class="chip"><b></b>Disponible · CDI &amp; freelance · Remote</span>
-      <h1>Des sites qui <span class="accent">marchent</span> vraiment.</h1>
-      <p class="hero__sub">Moi c'est Théo. Développeur web full-stack basé à Troyes, diplômé d'un BUT MMI. J'aime prendre un projet depuis la première ébauche jusqu'à sa mise en ligne, en soignant autant le code que ce que voit l'utilisateur. Envie de voir ce que ça donne ?</p>
+      <h1>Développeur web <span class="accent">full-stack</span>.</h1>
+      <p class="hero__sub">Moi c'est Théo, basé à Troyes, diplômé d'un BUT MMI. J'aime prendre un projet depuis la première ébauche jusqu'à sa mise en ligne, en soignant autant le code que ce que voit l'utilisateur. Envie de voir ce que ça donne ?</p>
       <div class="hero__cta">
         <a href="#projets" class="btn btn-accent btn-lg">Voir mes projets
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -196,17 +196,17 @@
     <p class="about reveal">Je suis développeur <b>full-stack</b>, curieux et plutôt exigeant avec moi-même. Ce qui me plaît, c'est de suivre un projet du premier croquis jusqu'à sa mise en ligne, en soignant autant le <b>code</b> que ce que voit l'utilisateur final. Je cherche aujourd'hui une équipe où continuer à apprendre, en <b>CDI</b> comme en <b>freelance</b>.</p>
     <div class="tl reveal">
       <div class="tlitem">
-        <span class="tldate">2026 · 3 mois</span>
-        <h3>Développeur web — Stage</h3>
-        <p class="tlrole">AER BFC · Bourgogne-Franche-Comté</p>
-        <p>Seul développeur sur la refonte du site du Forum Hydrogen Business for Climate : WordPress sur-mesure, développements PHP, multilingue et optimisation des performances.</p>
-      </div>
-      <div class="tlitem">
         <!-- À compléter : nom de l'entreprise, dates précises, mission et technos du 2e stage -->
         <span class="tldate">2026 · 3 mois</span>
         <h3>Développeur web — Stage</h3>
         <p class="tlrole">[Entreprise à préciser]</p>
         <p>[Mission à préciser]</p>
+      </div>
+      <div class="tlitem">
+        <span class="tldate">2026 · 3 mois</span>
+        <h3>Développeur web — Stage</h3>
+        <p class="tlrole">AER BFC · Bourgogne-Franche-Comté</p>
+        <p>Seul développeur sur la refonte du site du Forum Hydrogen Business for Climate : WordPress sur-mesure, développements PHP, multilingue et optimisation des performances.</p>
       </div>
       <div class="tlitem">
         <span class="tldate">2023 – 2026</span>
