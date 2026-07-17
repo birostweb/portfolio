@@ -168,7 +168,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
         <h3>Lanceur de dés</h3>
         <p>Un simulateur de lancer de dés animé, pour pouvoir m'entraîner sur la génération aléatoire, la manipulation du DOM et les animations CSS.</p>
         <div class="tags"><span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
-        <a class="plink" href="https://portfolio.theo-birost.fr/roll-dice" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <a class="plink" href="https://portfolio.theo-birost.fr/roll-dice/" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
