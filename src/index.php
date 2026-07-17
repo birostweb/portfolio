@@ -36,8 +36,8 @@
   <div class="wrap hero__grid">
     <div>
       <span class="chip"><b></b>Disponible · CDI &amp; freelance · Remote</span>
-      <h1>Développeur web <span class="accent">full-stack</span>.</h1>
-      <p class="hero__sub">Moi c'est Théo. Je conçois et développe des sites et applications web performants — du design à la mise en production. Diplômé d'un BUT MMI (Bac+3), basé à Troyes.</p>
+      <h1>Des sites qui <span class="accent">marchent</span> vraiment.</h1>
+      <p class="hero__sub">Moi c'est Théo. Développeur web full-stack basé à Troyes, diplômé d'un BUT MMI. J'aime prendre un projet depuis la première ébauche jusqu'à sa mise en ligne, en soignant autant le code que ce que voit l'utilisateur. Envie de voir ce que ça donne ?</p>
       <div class="hero__cta">
         <a href="#projets" class="btn btn-accent btn-lg">Voir mes projets
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -61,7 +61,7 @@
 <div class="facts">
   <div class="wrap facts__grid">
     <div class="fcell"><span class="n">01</span><div class="t">Full-stack — front &amp; back</div></div>
-    <div class="fcell"><span class="n">02</span><div class="t">7 projets réalisés</div></div>
+    <div class="fcell"><span class="n">02</span><div class="t">6 projets réalisés</div></div>
     <div class="fcell"><span class="n">03</span><div class="t">BUT MMI · Bac+3</div></div>
     <div class="fcell"><span class="n">04</span><div class="t">Dispo — CDI &amp; freelance</div></div>
   </div>
@@ -72,8 +72,8 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Projets</span>
-      <h2 class="h2 reveal">Mes réalisations récentes.</h2>
-      <p class="lead reveal">Des projets concrets, du site client à l'application full-stack.</p>
+      <h2 class="h2 reveal">Ce que j'ai fait récemment.</h2>
+      <p class="lead reveal">Quelques projets concrets, du site client livré en prod à l'appli perso pour apprendre.</p>
     </div>
     <div class="projects">
 
@@ -87,8 +87,8 @@
           <span class="project__k">Projet client · Stage</span>
           <h3>Forum Hydrogen Business for Climate</h3>
           <span class="project__ctx">Événement B2B international · Refonte complète</span>
-          <p>Refonte intégrale du site d'un forum international de la filière hydrogène : architecture bilingue FR/EN, composants sur-mesure (intervenants, exposants, presse) et optimisation des performances sur un contenu dense.</p>
-          <p class="project__role"><b>Mon rôle</b>Seul développeur, de l'intégration au déploiement, pendant mon stage à l'AER BFC.</p>
+          <p>Le site de ce forum international dédié à l'hydrogène avait besoin d'un vrai coup de neuf. Je me suis occupé de la bascule vers une version bilingue FR/EN, j'ai créé des blocs sur-mesure pour présenter intervenants, exposants et presse, et j'ai chassé les lenteurs sur un contenu pourtant dense.</p>
+          <p class="project__role"><b>Mon rôle</b>Seul développeur sur le projet, de l'intégration au déploiement, pendant mon stage chez AER BFC.</p>
           <div class="tags"><span class="tag">WordPress</span><span class="tag">ACF</span><span class="tag">CPT UI</span><span class="tag">TranslatePress</span><span class="tag">PHP</span><span class="tag">SEO</span></div>
           <div class="project__links">
             <a class="plink" href="https://www.hydrogenbusinessforclimate.com" target="_blank" rel="noopener">Voir le site
@@ -106,8 +106,8 @@
           <span class="project__k">Application web</span>
           <h3>Cineaste</h3>
           <span class="project__ctx">Full-stack · Vue 3</span>
-          <p>Application de découverte de films : recherche instantanée, fiches détaillées et données à jour via API. Une base full-stack complète, du front Vue 3 jusqu'à la logique serveur.</p>
-          <p class="project__role"><b>Mon rôle</b>Conception et développement complet, front et back.</p>
+          <p>Une appli pour dénicher des films : recherche instantanée, fiches détaillées, données toujours à jour grâce à une API externe. C'était surtout l'occasion de bosser le full-stack de bout en bout, du front en Vue 3 jusqu'à la logique côté serveur.</p>
+          <p class="project__role"><b>Mon rôle</b>Conception et développement complet, du front au back.</p>
           <div class="tags"><span class="tag">Vue 3</span><span class="tag">Vite</span><span class="tag">JavaScript</span><span class="tag">API REST</span></div>
           <div class="project__links">
             <a class="plink" href="https://portfolio.theo-birost.fr" target="_blank" rel="noopener">Démo
@@ -127,7 +127,7 @@
           <span class="project__k">E-commerce</span>
           <h3>Dampierre Auto</h3>
           <span class="project__ctx">Boutique en ligne · Interface sur-mesure</span>
-          <p>Boutique de pièces automobiles : catalogue structuré, panier et parcours d'achat sur-mesure, pensés pour la conversion et une navigation fluide.</p>
+          <p>Une boutique en ligne de pièces automobiles, avec un catalogue clair, un panier et un parcours d'achat pensés pour qu'on aille jusqu'au bout sans se perdre en route.</p>
           <p class="project__role"><b>Mon rôle</b>Développement front sur-mesure et intégration de la boutique.</p>
           <div class="tags"><span class="tag">Vue</span><span class="tag">Vite</span><span class="tag">E-commerce</span><span class="tag">UX</span></div>
           <div class="project__links">
@@ -146,30 +146,23 @@
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
         <h3>Jeu du clicker</h3>
-        <p>Un jeu de clic incrémental : gagnez des points, débloquez des améliorations et grimpez au classement.</p>
+        <p>Un petit jeu de clic old-school : on accumule des points, on débloque des améliorations et on grimpe au classement.</p>
         <div class="tags"><span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">PHP</span><span class="tag">Docker</span></div>
         <a class="plink" href="http://mmi23f02.mmi-troyes.fr/clicker/" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
         <h3>Lanceur de dés</h3>
-        <p>Simulateur de lancer de dés avec animations : génération aléatoire, manipulation du DOM et animations CSS.</p>
+        <p>Un simulateur de lancer de dés animé, histoire de m'entraîner sur la génération aléatoire, la manipulation du DOM et les animations CSS.</p>
         <div class="tags"><span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
         <a class="plink" href="http://mmi23f02.mmi-troyes.fr/dice/" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
         <h3>Portfolio template</h3>
-        <p>Template de portfolio moderne en Tailwind et PHP, multilingue FR/EN, pour présenter projets et compétences.</p>
+        <p>Un template de portfolio en Tailwind et PHP, multilingue FR/EN, pensé pour être facile à reprendre et à adapter.</p>
         <div class="tags"><span class="tag">Tailwind</span><span class="tag">HTML</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
         <a class="plink" href="http://mmi23f02.mmi-troyes.fr/portfolio-v3/" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-      </article>
-      <article class="mini">
-        <span class="mini__k">Projet universitaire · Duo</span>
-        <h3>Infrastructures vélo en France</h3>
-        <p>Site interactif pour explorer, filtrer et comparer les infrastructures cyclables en France. Réalisé en duo.</p>
-        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">JSON</span><span class="tag">Figma</span></div>
-        <a class="plink" href="http://mmi23f02.mmi-troyes.fr/sae303/" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
     </div>
   </div>
@@ -181,7 +174,7 @@
     <div class="sec-head">
       <span class="eyebrow">Compétences</span>
       <h2 class="h2 reveal">Ma stack technique.</h2>
-      <p class="lead reveal">Ce avec quoi je travaille au quotidien, du front au déploiement.</p>
+      <p class="lead reveal">Les outils et langages que j'utilise au quotidien, du front au déploiement.</p>
     </div>
     <div class="skills reveal">
       <div class="skillrow"><h3>Front-end</h3><div class="skilltags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">SCSS</span><span class="tag">JavaScript</span><span class="tag">Vue.js</span><span class="tag">Bootstrap</span><span class="tag">Tailwind</span><span class="tag">SEO</span></div></div>
@@ -200,13 +193,20 @@
       <span class="eyebrow">Parcours</span>
       <h2 class="h2 reveal">Mon parcours.</h2>
     </div>
-    <p class="about reveal">Développeur <b>full-stack</b> curieux et rigoureux, j'aime construire des projets web complets — du premier maquettage jusqu'à la mise en production. Je porte autant d'attention au <b>code propre</b> qu'au <b>rendu final</b>, et je cherche aujourd'hui une équipe où continuer à progresser, en <b>CDI</b> comme en <b>freelance</b>.</p>
+    <p class="about reveal">Je suis développeur <b>full-stack</b>, curieux et plutôt exigeant avec moi-même. Ce qui me plaît, c'est de suivre un projet du premier croquis jusqu'à sa mise en ligne, en soignant autant le <b>code</b> que ce que voit l'utilisateur final. Je cherche aujourd'hui une équipe où continuer à apprendre, en <b>CDI</b> comme en <b>freelance</b>.</p>
     <div class="tl reveal">
       <div class="tlitem">
-        <span class="tldate">2026 · 6 mois</span>
+        <span class="tldate">2026 · 3 mois</span>
         <h3>Développeur web — Stage</h3>
         <p class="tlrole">AER BFC · Bourgogne-Franche-Comté</p>
         <p>Seul développeur sur la refonte du site du Forum Hydrogen Business for Climate : WordPress sur-mesure, développements PHP, multilingue et optimisation des performances.</p>
+      </div>
+      <div class="tlitem">
+        <!-- À compléter : nom de l'entreprise, dates précises, mission et technos du 2e stage -->
+        <span class="tldate">2026 · 3 mois</span>
+        <h3>Développeur web — Stage</h3>
+        <p class="tlrole">[Entreprise à préciser]</p>
+        <p>[Mission à préciser]</p>
       </div>
       <div class="tlitem">
         <span class="tldate">2023 – 2026</span>
@@ -225,7 +225,7 @@
       <div>
         <span class="eyebrow" style="margin-bottom:16px">Contact</span>
         <h2 class="h2">Travaillons ensemble.</h2>
-        <p class="lead">Une opportunité en CDI, une mission freelance, ou simplement envie d'échanger ? Je réponds vite.</p>
+        <p class="lead">Une offre en CDI, une mission freelance, ou juste envie de discuter ? Je réponds vite.</p>
         <div class="manifest">
           <div class="mrow"><span class="mk">Mail</span><span class="mv"><a href="mailto:tbirost@gmail.com">tbirost@gmail.com</a></span></div>
           <div class="mrow"><span class="mk">GitHub</span><span class="mv"><a href="https://github.com/theobirost" target="_blank" rel="noopener">github.com/theobirost</a></span></div>
