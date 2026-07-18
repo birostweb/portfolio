@@ -137,17 +137,14 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
           <div class="shot__img"><span class="shot__ph">Dampierre Auto</span><span class="shot__phk">Ajoute une capture</span></div>
         </div>
         <div>
-          <span class="project__k">E-commerce</span>
+          <span class="project__k">E-commerce · À venir</span>
           <h3>Dampierre Auto</h3>
           <span class="project__ctx">Boutique en ligne · Interface sur-mesure</span>
           <p>Une boutique en ligne de pièces automobiles, avec un catalogue clair, un panier et un parcours d'achat pensés pour qu'on aille jusqu'au bout sans se perdre en route.</p>
           <p class="project__role"><b>Mon rôle</b>Développement front sur-mesure et intégration de la boutique.</p>
           <div class="tags"><span class="tag">Vue</span><span class="tag">Vite</span><span class="tag">E-commerce</span><span class="tag">UX</span></div>
           <div class="project__links">
-            <a class="plink" href="https://portfolio.theo-birost.fr" target="_blank" rel="noopener">Démo
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-            <a class="plink" href="https://github.com/theobirost" target="_blank" rel="noopener">Code
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <span class="plink" style="opacity:.6">Projet en cours de développement</span>
           </div>
         </div>
       </article>
@@ -158,19 +155,19 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
     <div class="mini-grid reveal">
       <article class="mini">
         <!-- Emplacement libre : à compléter avec un nouveau projet -->
-        <span class="mini__k">[Catégorie à préciser]</span>
-        <h3>[Titre du projet]</h3>
-        <p>[Description à compléter]</p>
-        <div class="tags"><span class="tag">[Techno]</span></div>
-        <a class="plink" href="#" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <span class="mini__k">À venir</span>
+        <h3>Projet à venir</h3>
+        <p>Un nouveau projet est en cours de préparation, les détails arrivent bientôt.</p>
+        <div class="tags"><span class="tag">?</span></div>
+        <span class="plink" style="opacity:.6">Bientôt disponible</span>
       </article>
       <article class="mini">
         <!-- Emplacement libre : à compléter avec un nouveau projet -->
-        <span class="mini__k">[Catégorie à préciser]</span>
-        <h3>[Titre du projet]</h3>
-        <p>[Description à compléter]</p>
-        <div class="tags"><span class="tag">[Techno]</span></div>
-        <a class="plink" href="#" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <span class="mini__k">À venir</span>
+        <h3>Projet à venir</h3>
+        <p>Un nouveau projet est en cours de préparation, les détails arrivent bientôt.</p>
+        <div class="tags"><span class="tag">?</span></div>
+        <span class="plink" style="opacity:.6">Bientôt disponible</span>
       </article>
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
