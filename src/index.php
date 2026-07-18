@@ -94,6 +94,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
         <div class="shot">
           <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">hydrogenbusinessforclimate.com</span></div>
           <div class="shot__img"> <img src="img/hydrogen_website.png" alt="Forum Hydrogen">
+            </div>
         </div>
         <div>
           <span class="project__k">Projet client · Stage</span>
