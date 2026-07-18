@@ -137,14 +137,14 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
           <div class="shot__img"><span class="shot__ph">Dampierre Auto</span><span class="shot__phk">Ajoute une capture</span></div>
         </div>
         <div>
-          <span class="project__k">E-commerce · À venir</span>
+          <span class="project__k">À venir</span>
           <h3>Dampierre Auto</h3>
-          <span class="project__ctx">Boutique en ligne · Interface sur-mesure</span>
-          <p>Une boutique en ligne de pièces automobiles, avec un catalogue clair, un panier et un parcours d'achat pensés pour qu'on aille jusqu'au bout sans se perdre en route.</p>
-          <p class="project__role"><b>Mon rôle</b>Développement front sur-mesure et intégration de la boutique.</p>
-          <div class="tags"><span class="tag">Vue</span><span class="tag">Vite</span><span class="tag">E-commerce</span><span class="tag">UX</span></div>
+          <span class="project__ctx">Site en cours de développement</span>
+          <p>Site en cours de développement.</p>
+          <p class="project__role"><b>Mon rôle</b>???</p>
+          <div class="tags"><span class="tag">???</span></div>
           <div class="project__links">
-            <span class="plink" style="opacity:.6">Projet en cours de développement</span>
+            <span class="plink" style="opacity:.6">Site en cours de développement</span>
           </div>
         </div>
       </article>
