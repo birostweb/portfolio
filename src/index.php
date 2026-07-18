@@ -112,20 +112,18 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
 
       <article class="project reveal">
         <div class="shot">
-          <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">cineaste — app</span></div>
-          <div class="shot__img"><span class="shot__ph">Cineaste</span><span class="shot__phk">Ajoute une capture</span></div>
+          <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">clicker — jeu</span></div>
+          <div class="shot__img"><span class="shot__ph">Jeu du clicker</span><span class="shot__phk">Ajoute une capture</span></div>
         </div>
         <div>
-          <span class="project__k">Application web</span>
-          <h3>Cineaste</h3>
-          <span class="project__ctx">Full-stack · Vue 3</span>
-          <p>Une appli pour dénicher des films : recherche instantanée, fiches détaillées, données toujours à jour grâce à une API externe. C'était surtout l'occasion de bosser le full-stack de bout en bout, du front en Vue 3 jusqu'à la logique côté serveur.</p>
+          <span class="project__k">Projet perso · Solo</span>
+          <h3>Jeu du clicker</h3>
+          <span class="project__ctx">Jeu de clic old-school · Système de progression</span>
+          <p>Un petit jeu de clic old-school : on accumule des points, on débloque des améliorations et on grimpe au classement.</p>
           <p class="project__role"><b>Mon rôle</b>Conception et développement complet, du front au back.</p>
-          <div class="tags"><span class="tag">Vue 3</span><span class="tag">Vite</span><span class="tag">JavaScript</span><span class="tag">API REST</span></div>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">PHP</span><span class="tag">Docker</span></div>
           <div class="project__links">
-            <a class="plink" href="https://portfolio.theo-birost.fr" target="_blank" rel="noopener">Démo
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-            <a class="plink" href="https://github.com/theobirost" target="_blank" rel="noopener">Code
+            <a class="plink" href="https://portfolio.theo-birost.fr/clicker/" target="_blank" rel="noopener">Voir le projet
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
           </div>
         </div>
@@ -157,11 +155,20 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
     <div class="subhead reveal">Autres projets — académiques &amp; perso</div>
     <div class="mini-grid reveal">
       <article class="mini">
-        <span class="mini__k">Projet perso · Solo</span>
-        <h3>Jeu du clicker</h3>
-        <p>Un petit jeu de clic old-school : on accumule des points, on débloque des améliorations et on grimpe au classement.</p>
-        <div class="tags"><span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">PHP</span><span class="tag">Docker</span></div>
-        <a class="plink" href="https://portfolio.theo-birost.fr/clicker/" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <!-- Emplacement libre : à compléter avec un nouveau projet -->
+        <span class="mini__k">[Catégorie à préciser]</span>
+        <h3>[Titre du projet]</h3>
+        <p>[Description à compléter]</p>
+        <div class="tags"><span class="tag">[Techno]</span></div>
+        <a class="plink" href="#" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </article>
+      <article class="mini">
+        <!-- Emplacement libre : à compléter avec un nouveau projet -->
+        <span class="mini__k">[Catégorie à préciser]</span>
+        <h3>[Titre du projet]</h3>
+        <p>[Description à compléter]</p>
+        <div class="tags"><span class="tag">[Techno]</span></div>
+        <a class="plink" href="#" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
