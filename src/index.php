@@ -113,7 +113,9 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
       <article class="project reveal">
         <div class="shot">
           <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">clicker — jeu</span></div>
-          <div class="shot__img"><span class="shot__ph">Jeu du clicker</span><span class="shot__phk">Ajoute une capture</span></div>
+          <div class="shot__img">
+          <img src="img/clicker_img.png" alt="Jeu du clicker">
+          </div>
         </div>
         <div>
           <span class="project__k">Projet perso · Solo</span>
