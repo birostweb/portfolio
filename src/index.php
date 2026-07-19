@@ -133,12 +133,12 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
 
       <article class="project reveal">
         <div class="shot">
-          <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">dampierre-auto — boutique</span></div>
-          <div class="shot__img"><span class="shot__ph">Dampierre Auto</span><span class="shot__phk">Ajoute une capture</span></div>
+          <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">À venir</span></div>
+          <div class="shot__img"><span class="shot__ph">À venir</span><span class="shot__phk">Ajoute une capture</span></div>
         </div>
         <div>
           <span class="project__k">À venir</span>
-          <h3>Dampierre Auto</h3>
+          <h3>À venir</h3>
           <span class="project__ctx">Site en cours de développement</span>
           <p>Site en cours de développement.</p>
           <p class="project__role"><b>Mon rôle</b>???</p>
