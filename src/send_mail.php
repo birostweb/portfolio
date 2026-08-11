@@ -147,6 +147,89 @@ function contact_render_email_html(string $name, string $email, string $message)
 HTML;
 }
 
+/**
+ * Évaluation anti-spam / anti-phishing du message.
+ * Ne bloque pas (sauf cas extrême) : attribue un score et des raisons.
+ *   - flag  : score élevé  => l'email est marqué (sujet + en-têtes X-Spam-*)
+ *             pour être filtré automatiquement vers les indésirables.
+ *   - block : spam évident => on jette silencieusement (réponse OK factice).
+ *
+ * @return array{score:int, reasons:array<int,string>, flag:bool, block:bool}
+ */
+function contact_spam_assessment(string $name, string $email, string $message): array
+{
+    $score = 0;
+    $reasons = [];
+    $add = function (int $pts, string $why) use (&$score, &$reasons) {
+        $score += $pts;
+        $reasons[] = $why;
+    };
+    $haystack = mb_strtolower($name . ' ' . $message);
+
+    // 1) Nombre de liens
+    $links = preg_match_all('#https?://|www\.#i', $message);
+    if ($links >= 6)     { $add(5, "beaucoup de liens ($links)"); }
+    elseif ($links >= 3) { $add(3, "plusieurs liens ($links)"); }
+
+    // 2) Raccourcisseurs d'URL (typiques du phishing)
+    if (preg_match('#\b(bit\.ly|tinyurl\.com|t\.co|goo\.gl|ow\.ly|is\.gd|buff\.ly|cutt\.ly|rebrand\.ly|shorturl\.at|adf\.ly)\b#i', $message)) {
+        $add(4, "raccourcisseur d'URL");
+    }
+
+    // 3) Mots-clés arnaque / phishing / SEO-spam
+    $spamWords = [
+        'viagra', 'cialis', 'casino', 'porn', 'bitcoin', 'crypto', 'forex', 'loan', 'payday',
+        'nigerian prince', 'wire transfer', 'inheritance', 'western union', 'gift card',
+        'verify your account', 'confirm your password', 'suspended account', 'reset your password',
+        'click here to claim', 'seo service', 'référencement garanti', 'backlink', 'guaranteed ranking',
+        'first page of google', 'make money', 'work from home', 'free money', 'investment opportunity',
+        'you have won', 'claim your prize', 'act now', 'limited time offer', 'increase your traffic',
+    ];
+    $hits = 0;
+    foreach ($spamWords as $w) {
+        if (mb_strpos($haystack, $w) !== false) { $hits++; }
+    }
+    if ($hits > 0) { $add(min(6, 2 * $hits), "mots suspects ($hits)"); }
+
+    // 4) Écriture non latine (cyrillique / CJK) => quasi toujours du spam ici
+    if (preg_match('/[\x{0400}-\x{04FF}\x{4E00}-\x{9FFF}\x{3040}-\x{30FF}]/u', $message)) {
+        $add(4, 'caractères non latins');
+    }
+
+    // 5) Balises HTML / BBCode dans le message
+    if (preg_match('#<[a-z][\s\S]*>|\[url|\[link#i', $message)) {
+        $add(3, 'balises HTML/BBCode');
+    }
+
+    // 6) Cri en majuscules
+    $letters = preg_replace('/[^a-zA-ZÀ-ÿ]/u', '', $message);
+    if (mb_strlen((string) $letters) > 20) {
+        $upper = preg_replace('/[^A-ZÀ-Þ]/u', '', $message);
+        if (mb_strlen((string) $upper) / max(1, mb_strlen((string) $letters)) > 0.6) {
+            $add(2, 'majuscules excessives');
+        }
+    }
+
+    // 7) Nom contenant une URL
+    if (preg_match('#https?://|www\.#i', $name)) { $add(3, 'URL dans le nom'); }
+
+    // 8) Domaine email : jetable, ou sans MX (adresse probablement fausse)
+    $domain = strtolower(substr(strrchr($email, '@') ?: '', 1));
+    $disposable = ['mailinator.com', 'guerrillamail.com', '10minutemail.com', 'yopmail.com', 'tempmail.com', 'trashmail.com', 'sharklasers.com', 'getnada.com', 'maildrop.cc', 'temp-mail.org'];
+    if ($domain !== '' && in_array($domain, $disposable, true)) {
+        $add(4, 'email jetable');
+    } elseif ($domain !== '' && function_exists('checkdnsrr') && !checkdnsrr($domain, 'MX') && !checkdnsrr($domain, 'A')) {
+        $add(3, 'domaine email sans MX');
+    }
+
+    return [
+        'score'   => $score,
+        'reasons' => $reasons,
+        'flag'    => $score >= 4,
+        'block'   => $score >= 12,
+    ];
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // --- Rate limit par IP : coupe le spam en rafale avant tout autre traitement ---
@@ -203,11 +286,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // --- Limite de liens : contenu publicitaire / spam ---
-    $linkCount = preg_match_all('#https?://|www\.#i', $message);
-    if ($linkCount > 2) {
-        http_response_code(400);
-        echo "Votre message contient trop de liens.";
+    // --- Anti-spam / anti-phishing : scoring ---
+    $spam = contact_spam_assessment($name, $email, $message);
+
+    // Spam évident : on répond OK (comme le honeypot) sans rien envoyer.
+    if ($spam['block']) {
+        http_response_code(200);
+        echo "Merci ! Votre message a bien été envoyé.";
         exit;
     }
 
@@ -235,6 +320,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // --- Contenu ---
         $mail->isHTML(true);
         $mail->Subject = "Nouveau message de $name";
+
+        // Message jugé douteux : on le marque pour que la boîte le filtre en indésirables.
+        if ($spam['flag']) {
+            $mail->Subject = '[⚠ SPAM?] ' . $mail->Subject;
+            $mail->addCustomHeader('X-Spam-Flag', 'YES');
+            $mail->addCustomHeader('X-Spam-Score', (string) $spam['score']);
+            $mail->addCustomHeader('X-Spam-Reasons', substr(implode('; ', $spam['reasons']), 0, 200));
+            $mail->Priority = 5;
+        }
+
         $mail->Body    = contact_render_email_html($name, $email, $message);
         $mail->AltBody = "Nouveau message depuis le formulaire de contact.\n\n"
             . "Nom : $name\n"
