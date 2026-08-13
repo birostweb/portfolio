@@ -316,10 +316,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->setFrom($_ENV['SMTP_USERNAME'], 'Formulaire theo-birost.fr');
         $mail->addAddress('contact@theo-birost.fr', 'Théo Birost');
         $mail->addReplyTo($email, $name);
+        $mail->addCustomHeader('X-Mail-Source', 'theo-birost.fr (portfolio)');
 
         // --- Contenu ---
         $mail->isHTML(true);
-        $mail->Subject = "Nouveau message de $name";
+        $mail->Subject = "[Portfolio] Nouveau message de $name";
 
         // Message jugé douteux : on le marque pour que la boîte le filtre en indésirables.
         if ($spam['flag']) {

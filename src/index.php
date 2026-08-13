@@ -36,6 +36,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
       <a href="#projets">Projets</a>
       <a href="#competences">Compétences</a>
       <a href="#parcours">Parcours</a>
+      <a href="#prestations">Prestations</a>
       <a href="#contact" class="btn btn-accent">Me contacter</a>
     </nav>
     <button class="nav__toggle" id="toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -213,6 +214,21 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
         <p class="tlrole">Métiers du Multimédia et de l'Internet</p>
         <p>Formation full-stack complète : développement web front &amp; back, design d'interface, gestion de projet et culture numérique.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITE PRO / PRESTATIONS -->
+<section class="section" id="prestations" style="background:#DEDACD">
+  <div class="wrap">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,40px);align-items:center;justify-content:space-between">
+      <div style="flex:1 1 320px">
+        <span class="eyebrow">Prestations</span>
+        <h2 class="h2" style="margin-top:14px">Un projet web pour votre activité&nbsp;?</h2>
+        <p class="lead">Sites vitrines, boutiques et applications sur-mesure — de la conception au déploiement. Mes offres, mes tarifs et un formulaire de devis sont sur mon site professionnel.</p>
+      </div>
+      <a href="https://birostweb.fr" target="_blank" rel="noopener" class="btn btn-accent btn-lg" style="white-space:nowrap">Voir mes prestations
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
     </div>
   </div>
 </section>
