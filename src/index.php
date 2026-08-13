@@ -131,43 +131,23 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
         </div>
       </article>
 
-      <article class="project reveal">
-        <div class="shot">
-          <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">À venir</span></div>
-          <div class="shot__img"><span class="shot__ph">À venir</span><span class="shot__phk">Ajoute une capture</span></div>
-        </div>
-        <div>
-          <span class="project__k">À venir</span>
-          <h3>À venir</h3>
-          <span class="project__ctx">Site en cours de développement</span>
-          <p>Site en cours de développement.</p>
-          <p class="project__role"><b>Mon rôle</b>???</p>
-          <div class="tags"><span class="tag">???</span></div>
-          <div class="project__links">
-            <span class="plink" style="opacity:.6">Site en cours de développement</span>
-          </div>
-        </div>
-      </article>
-
     </div>
 
-    <div class="subhead reveal">Autres projets — académiques &amp; perso</div>
+    <div class="subhead reveal">Autres projets — perso</div>
     <div class="mini-grid reveal">
       <article class="mini">
-        <!-- Emplacement libre : à compléter avec un nouveau projet -->
-        <span class="mini__k">À venir</span>
-        <h3>Projet à venir</h3>
-        <p>Un nouveau projet est en cours de préparation, les détails arrivent bientôt.</p>
-        <div class="tags"><span class="tag">?</span></div>
-        <span class="plink" style="opacity:.6">Bientôt disponible</span>
+        <span class="mini__k">Application web · Full-stack</span>
+        <h3>Budget</h3>
+        <p>Gestion de budget et de dettes : solde, stratégies de remboursement (avalanche / snowball), cartes et objectifs. Connexion sans mot de passe (code email).</p>
+        <div class="tags"><span class="tag">Vue 3</span><span class="tag">Tailwind</span><span class="tag">PHP</span><span class="tag">Docker</span></div>
+        <a class="plink" href="https://budget.theo-birost.fr" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
       <article class="mini">
-        <!-- Emplacement libre : à compléter avec un nouveau projet -->
-        <span class="mini__k">À venir</span>
-        <h3>Projet à venir</h3>
-        <p>Un nouveau projet est en cours de préparation, les détails arrivent bientôt.</p>
-        <div class="tags"><span class="tag">?</span></div>
-        <span class="plink" style="opacity:.6">Bientôt disponible</span>
+        <span class="mini__k">Jeu web · Solo</span>
+        <h3>Empire Culturel</h3>
+        <p>Jeu incrémental de collection de monuments : farm, boosters, arbre technologique et classement. Parties sauvegardées en local.</p>
+        <div class="tags"><span class="tag">Vue 3</span><span class="tag">Tailwind</span><span class="tag">JavaScript</span></div>
+        <a class="plink" href="https://carte.theo-birost.fr" target="_blank" rel="noopener">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </article>
       <article class="mini">
         <span class="mini__k">Projet perso · Solo</span>
