@@ -17,8 +17,11 @@ RUN ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./src/output.css --min
 # --- Étape 2: Image finale PHP + Apache ---
 FROM php:8.2-apache
 
-# Activation du module rewrite
-RUN a2enmod rewrite
+# Activation des modules (réécriture + en-têtes de sécurité)
+RUN a2enmod rewrite headers
+
+# Config PHP de production (display_errors off, expose_php off, etc.)
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Configuration du ServerName pour éviter les warnings
 RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \

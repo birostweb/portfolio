@@ -18,13 +18,22 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio · Théo Birost </title>
 <meta name="description" content="Portfolio de Théo Birost, développeur web full-stack à Troyes (BUT MMI). Projets réels en Vue, JavaScript, PHP et WordPress — du design au déploiement. Disponible en CDI et freelance.">
+<link rel="canonical" href="https://portfolio.theo-birost.fr/">
 <meta property="og:title" content="Théo Birost — Développeur web full-stack">
 <meta property="og:description" content="Portfolio — projets web réels, du design au déploiement. Disponible CDI & freelance.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://portfolio.theo-birost.fr/">
+<meta property="og:image" content="https://portfolio.theo-birost.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Théo Birost — Développeur web full-stack">
+<meta name="twitter:description" content="Portfolio — projets web réels, du design au déploiement.">
+<meta name="twitter:image" content="https://portfolio.theo-birost.fr/og-image.png">
 <link rel="icon" href="img/TB.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Polices auto-hébergées (RGPD : aucune requête vers Google) -->
+<link rel="preload" href="fonts/ibmplexsans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ibmplexsanscondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="output.css">
 </head>
 <body>
@@ -315,9 +324,8 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
       alert(text);
       form.reset();
     })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('An error occurred. Please try again.');
+    .catch(function() {
+      alert("Une erreur est survenue. Merci de réessayer.");
     });
   });
 })();
