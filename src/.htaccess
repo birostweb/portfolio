@@ -1,0 +1,36 @@
+# ============================================================
+#  Portfolio theo-birost.fr — durcissement Apache
+#  HTTPS/TLS géré en amont par Traefik (Dokploy).
+# ============================================================
+Options -Indexes
+
+# ---------------- En-têtes de sécurité ----------------
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), interest-cohort=()"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    # CSP : script inline verrouillé par hash ; Google Fonts autorisé (CSS + fichiers)
+    Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; script-src 'self' 'sha256-3+7wA1OFlTrc1jK2reCf/ODwPKlNPeVCRlYCtBClFpg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
+    <FilesMatch "\.php$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# ---------------- Fichiers sensibles ----------------
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+<FilesMatch "(composer\.(json|lock)|package(-lock)?\.json|\.htaccess|entrypoint\.sh|input\.css)$">
+    Require all denied
+</FilesMatch>
+
+RewriteEngine On
+RewriteRule ^vendor/ - [F,L]
+
+# ---------------- 404 personnalisée ----------------
+ErrorDocument 404 /404.html
