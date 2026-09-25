@@ -21,6 +21,30 @@ Options -Indexes
     </FilesMatch>
 </IfModule>
 
+# ---------------- Cache ----------------
+<IfModule mod_headers.c>
+    # Fichiers statiques : les URL versionnées par asset() (index.php, ?v=<empreinte>)
+    # changent à chaque modification -> cache 1 an sans revalidation.
+    # Sans ?v= (liens directs…) : revalidation à chaque visite
+    # (réponse 304 légère si rien n'a changé), donc jamais de version périmée.
+    <FilesMatch "\.(css|js|webp|png|jpe?g|gif|svg|ico|pdf|webmanifest)$">
+        <If "%{QUERY_STRING} =~ /(^|&)v=/">
+            Header set Cache-Control "public, max-age=31536000, immutable"
+        </If>
+        <Else>
+            Header set Cache-Control "no-cache"
+        </Else>
+    </FilesMatch>
+    # Polices : appelées par fonts.css sans version, mais elles ne changent jamais.
+    <FilesMatch "\.woff2$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    # Page 404 statique : toujours revalidée
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
+
 # ---------------- Fichiers sensibles ----------------
 <FilesMatch "^\.env">
     Require all denied

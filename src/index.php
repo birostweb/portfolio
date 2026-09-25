@@ -10,6 +10,14 @@ try {
 }
 $contactFormTs    = time();
 $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_FORM_SECRET'] ?? '');
+
+// Cache-busting : ajoute ?v=<empreinte du contenu> aux fichiers statiques.
+// Le .htaccess met ces URL versionnées en cache 1 an : dès qu'un fichier
+// change, son empreinte (donc son URL) change et le navigateur le recharge.
+function asset(string $path): string {
+    $file = __DIR__ . '/' . $path;
+    return is_file($file) ? $path . '?v=' . substr(md5_file($file), 0, 8) : $path;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,13 +37,21 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
 <meta name="twitter:title" content="Théo Birost — Développeur web full-stack">
 <meta name="twitter:description" content="Portfolio — projets web réels, du design au déploiement.">
 <meta name="twitter:image" content="https://portfolio.theo-birost.fr/og-image.png">
-<link rel="icon" href="img/TB.png" type="image/png">
+<link rel="icon" href="<?= asset('img/TB.png') ?>" type="image/png">
 <!-- Polices auto-hébergées (RGPD : aucune requête vers Google) -->
 <link rel="preload" href="fonts/ibmplexsans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/ibmplexsanscondensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="output.css">
-<link rel="stylesheet" href="studio.css">
+<link rel="stylesheet" href="<?= asset('fonts/fonts.css') ?>">
+<link rel="stylesheet" href="<?= asset('output.css') ?>">
+<link rel="stylesheet" href="<?= asset('studio.css') ?>">
+<!-- Animations : GSAP auto-hébergé (CSP 'self'), voir js/motion/ -->
+<link rel="stylesheet" href="<?= asset('motion.css') ?>">
+<script src="<?= asset('js/motion/init.js') ?>"></script>
+<script defer src="<?= asset('js/lib/gsap.min.js') ?>"></script>
+<script defer src="<?= asset('js/lib/ScrollTrigger.min.js') ?>"></script>
+<script defer src="<?= asset('js/lib/SplitText.min.js') ?>"></script>
+<script defer src="<?= asset('js/motion/core.js') ?>"></script>
+<script defer src="<?= asset('js/motion/site.js') ?>"></script>
 </head>
 <body>
 
@@ -66,7 +82,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
         <a href="#projets" class="btn btn-accent btn-lg">Voir mes projets
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="#contact" class="btn btn-ghost btn-lg">Me contacter</a>
-        <a href="pdf/CV.pdf" class="tlink" download>
+        <a href="<?= asset('pdf/CV.pdf') ?>" class="tlink" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
           Mon CV (PDF)</a>
       </div>
@@ -104,7 +120,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
       <article class="project reveal">
         <div class="shot">
           <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">hydrogenbusinessforclimate.com</span></div>
-          <div class="shot__img"> <img src="img/hydrogen_website.webp" alt="Forum Hydrogen" width="1400" height="804" loading="lazy" decoding="async">
+          <div class="shot__img"> <img src="<?= asset('img/hydrogen_website.webp') ?>" alt="Forum Hydrogen" width="1400" height="804" loading="lazy" decoding="async">
             </div>
         </div>
         <div>
@@ -124,7 +140,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
       <article class="project reveal">
         <div class="shot">
           <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">generique.theo-birost.fr</span></div>
-          <div class="shot__img"><img src="img/generique.webp" alt="Générique — index de cinéma" width="1400" height="875" loading="lazy" decoding="async"></div>
+          <div class="shot__img"><img src="<?= asset('img/generique.webp') ?>" alt="Générique — index de cinéma" width="1400" height="875" loading="lazy" decoding="async"></div>
         </div>
         <div>
           <span class="project__k">Projet perso · Application web</span>
@@ -144,7 +160,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
         <div class="shot">
           <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">clicker — jeu</span></div>
           <div class="shot__img">
-          <img src="img/clicker_img.webp" alt="Jeu du clicker" width="1400" height="741" loading="lazy" decoding="async">
+          <img src="<?= asset('img/clicker_img.webp') ?>" alt="Jeu du clicker" width="1400" height="741" loading="lazy" decoding="async">
           </div>
         </div>
         <div>
@@ -164,7 +180,7 @@ $contactFormToken = hash_hmac('sha256', (string) $contactFormTs, $_ENV['CONTACT_
       <article class="project reveal">
         <div class="shot">
           <div class="shot__bar"><i></i><i></i><i></i><span class="shot__url">maisondubonheurstesavine.fr</span></div>
-          <div class="shot__img"><img src="img/maisondubonheur.webp" alt="Maison du Bonheur — site de réservation" width="1400" height="875" loading="lazy" decoding="async"></div>
+          <div class="shot__img"><img src="<?= asset('img/maisondubonheur.webp') ?>" alt="Maison du Bonheur — site de réservation" width="1400" height="875" loading="lazy" decoding="async"></div>
         </div>
         <div>
           <span class="project__k">Projet client · Stage</span>
